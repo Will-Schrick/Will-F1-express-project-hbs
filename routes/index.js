@@ -6,6 +6,8 @@ const isAdmin = require('../middlewares/isAdmin');
 
 router.use('/auth', require('./auth'));
 router.use('/admin', isAdmin, require('./admin'));
+// add more here below
+
 
 router.get('/profile', (req, res) => {
   const { email } = req.user;

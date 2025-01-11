@@ -11,21 +11,53 @@ datasource db {
 }
 
 enum Role {
-  USER
+  TEAMUSER
   ADMIN
 }
 
+//anyone on teams: mechanic, manager, pilot, etc
 model User {
-  id String @id @default(uuid())
-  email String @unique
-  password String
+  id        String   @id @unique
+  email     String   @unique
+  password  String
+  name      String
+  dob       DateTime
+  teamid    Int
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  role Role @default(USER)
+  role      Role     @default(TEAMUSER) //user or admins  //  only teammanagers are admins, rest are users
+  Team      Team     @relation("TeamToUsers",fields: [teamid], references: [teamid])
+  TeamRole  String // mechanic, driver, teammanager etc
 }
 
+//don't touch
 model Session {
-  sid     String   @id @db.VarChar(255) // Session ID
-  sess    Json     // Session data stored as JSON
-  expire  DateTime // Expiration date of the session
+  sid    String   @id @db.VarChar(255) // Session ID
+  sess   Json // Session data stored as JSON
+  expire DateTime // Expiration date of the session
 }
+
+model Team {
+  teamid          Int      @id @default(autoincrement()) //1,2.3
+  name            String // (redbull, Ferrari , etc)
+  location        String //country
+  companowner     String //name
+  yearestablished DateTime //mo/year
+  crewmembers     User[]    @relation("TeamToUsers")// links to all users who below to this team
+}
+
+/**
+ * //table 1   (anyone on teams: mechanic, manager, pilot, etc)
+ * model F1User {
+ * userid          @id @unique @default(autoincrement()) //1 ,2,3 etc
+ * password string
+ * name     string
+ * email    string @unique
+ * dob      string
+ * role     string //(mechanic, engineer,driver Team manager)
+ * teamid   int
+ * team     Team // Team @relation(fields: [teamid], references: [teamid])
+ * }
+ */
+
+//table 2  (team names and general info)
