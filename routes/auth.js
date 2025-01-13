@@ -36,13 +36,22 @@ const prisma = require("../prisma");
  */
 router.post("/register", async (req, res) => {
   try {
+    //added 1 line below
+    const { email, password, name, dob, teamid, teamRole } = req.body;
+    //original below
     const hashedPassword = await bcrypt.hash(req.body.password, 10);
     const newUser = await prisma.user.create({
       data: {
         email: req.body.email,
         password: hashedPassword,
+        //addded items below
+        name,
+        dob: new Date(dob),
+        teamid: parseInt(teamid, 4),
+        TeamRole: teamRole,
       },
     });
+    console.log(req.body);
     res.redirect("/auth/login-page");
   } catch (error) {
     console.log(error);
