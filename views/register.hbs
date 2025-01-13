@@ -1,13 +1,34 @@
 <h1>Signup</h1>
-<form action="/auth/register" method="post">
-    <div>
-        <label for="email">Email:</label>
-        <input type="email" id="email" name="email" required>
-    </div>
-    <div>
-        <label for="password">Password:</label>
-        <input type="password" id="password" name="password" required>
-    </div>
-    <button type="submit">Registrar</button>
+<form action="/auth/register" method="POST">
+  <div>
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+  </div>
+  <div>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" required />
+  </div>
+  <div>
+    <label for="name">Full Name:</label>
+    <input type="text" id="name" name="name" required />
+  </div>
+  <div>
+    <label for="dob">Date of Birth:</label>
+    <input type="date" id="dob" name="dob" required />
+  </div>
+  <div>
+    <label for="teamid">Team ID:</label>
+    <input type="number" id="teamid" name="teamid" required />
+  </div>
+  <div>
+    <label for="teamRole">Team Role:</label>
+    <select id="teamRole" name="teamRole" required>
+      <option value="DRIVER">Driver</option>
+      <option value="ENGINEER">Engineer</option>
+      <option value="PIT CREW">Pit Crew</option>
+      <option value="TEAMMANAGER">Team Manager</option>
+    </select>
+  </div>
+  <button type="submit">Register</button>
 </form>
-<p>Ya tienes una cuenta? <a href="/auth/login">Inicia sesión aquí</a></p>
+<p>Ya tienes una cuenta? <a href="/auth/login-page">Inicia sesión aquí</a></p>

@@ -17,8 +17,8 @@ const swaggerUi = require('./config/swagger').swaggerUi;
 const hbs = create({
   extname: 'hbs',
   defaultLayout: 'main',
-  partialsDir: 'views/partials',
-  helpers: require('./utils/helpers')
+  partialsDir: 'views/partials',      //added
+  helpers: require('./utils/helpers')  //existed
 });
 
 require('dotenv').config();
@@ -27,7 +27,15 @@ const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
 
-const indexRouter = require('./routes/index');
+//my routes go here 
+const indexRouter = require('./routes/index');  //existed
+//added below to // below maybe
+//const authRouter = require('./routes/auth')  //added
+//const adminRouter = require ('./routes/admin') //added
+const profileRouter = require('./routes/index'); //added
+//const loginRouter = require('.routes/login'); //added
+
+//
 
 const app = express();
 
@@ -61,12 +69,18 @@ app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
 
-require('./config/passport');
-require('./config/cloudinary');
+require('./config/passport');   //existed
+require('./config/cloudinary');  //existed
 
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));  //existed- for swagger routes up above
 
-app.use('/', indexRouter);
+app.use('/', indexRouter);  // main but redirect to 3000/auth/login-page
+//i added more below
+//app.use('/auth', authRouter);
+//app.use('/admin', adminRouter);
+//app.use('/profile', profileRouter);
+//app.use('/login', loginRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
