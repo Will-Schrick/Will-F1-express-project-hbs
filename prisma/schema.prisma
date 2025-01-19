@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,12 +7,6 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-enum Role {
-  USER
-  ADMIN
-}
-
-//anyone on teams: mechanic, manager, pilot, etc
 model User {
   id        String   @id @default(uuid())
   email     String   @unique
@@ -24,26 +15,28 @@ model User {
   dob       DateTime
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  role      Role     @default(USER) //user or admins  //  only teammanagers are admins, rest are users
-  teamRole  String // mechanic, driver, teammanager etc
+  role      Role     @default(USER)
+  teamRole  String
+  teamId    Int
   team      Team?    @relation(fields: [teamId], references: [id])
-  teamId    Int?
 }
 
-//don't touch
 model Session {
-  sid    String   @id @db.VarChar(255) // Session ID
-  sess   Json // Session data stored as JSON
-  expire DateTime // Expiration date of the session
+  sid    String   @id @db.VarChar(255)
+  sess   Json
+  expire DateTime
 }
 
 model Team {
-  id              Int      @id @default(autoincrement()) //1,2.3
-  name            String // (redbull, Ferrari , etc)
-  location        String //country
-  companyOwner    String //name
-  yearEstablished DateTime //mo/year
-  crewMembers     User[] // links to all users who below to this team
-}g
+  id              Int      @id @default(autoincrement())
+  name            String
+  location        String
+  companyOwner    String
+  yearEstablished DateTime
+  crewMembers     User[]
+}
 
-//table 2  (team names and general info)
+enum Role {
+  USER
+  ADMIN
+}

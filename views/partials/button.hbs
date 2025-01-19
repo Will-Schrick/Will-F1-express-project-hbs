@@ -1,0 +1,17 @@
+{{#eq user.role "ADMIN"}}
+    <a href="/admin" class="admin-btn">Go to Admin Page</a>
+{{/eq}}
+
+{{!--
+<button {{#eq user.role "ADMIN"}}disabled{{/eq}} >
+    {{if isdisabled}}Disabled{{else}}Enabled{{/if}} 
+</button>
+{{!--  --}}
+
+
+{{!-- without eq option helper --}}
+{{!--
+<button {{#if(eq user.role "ADMIN")}}disabled{{/eq}} >
+    {{if isdisabled}}Disabled{{else}}Enabled{{/if}} 
+    </button>
+  --}}

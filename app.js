@@ -30,7 +30,7 @@ const pool = new Pool({
 //my routes go here 
 const indexRouter = require('./routes/index');  //existed
 //added below to // below maybe
-//const authRouter = require('./routes/auth')  //added
+const authRouter = require('./routes/auth')  //added
 //const adminRouter = require ('./routes/admin') //added
 const profileRouter = require('./routes/index'); //added
 //const loginRouter = require('.routes/login'); //added
@@ -76,7 +76,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));  //existed-
 
 app.use('/', indexRouter);  // main but redirect to 3000/auth/login-page
 //i added more below
-//app.use('/auth', authRouter);
+app.use('/auth', authRouter);
 //app.use('/admin', adminRouter);
 //app.use('/profile', profileRouter);
 //app.use('/login', loginRouter);
