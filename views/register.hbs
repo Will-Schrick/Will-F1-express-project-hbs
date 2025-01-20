@@ -1,77 +1,45 @@
-{{!-- 
-<h1>Signup</h1>
-<form action='/auth/register' method='POST'>
-  <div>
-    <label for='email'>Email:</label>
-    <input type='email' id='email' name='email' required />
-  </div>
-  <div>
-    <label for='password'>Password:</label>
-    <input type='password' id='password' name='password' required />
-  </div>
-  <div>
-    <label for='name'>Full Name:</label>
-    <input type='text' id='name' name='name' required />
-  </div>
-  <div>
-    <label for='dob'>Date of Birth:</label>
-    <input type='date' id='dob' name='dob' required />
-  </div>
-<div>
- 
-</div>
-  <div>
-    <label for='teamRole'>Team Role:</label>
-    <select id='teamRole' name='teamRole' required>
-      <option value='DRIVER'>Driver</option>
-      <option value='ENGINEER'>Engineer</option>
-      <option value='PIT CREW'>Pit Crew</option>
-      <option value='TEAMMANAGER'>Team Manager</option>
-    </select>
-  </div>
-  <button type='submit'>Register</button>
-</form>
-<p>Ya tienes una cuenta? <a href='/auth/login-page'>Inicia sesión aquí</a></p>
+<link rel='stylesheet' href='/stylesheets/style-f1-final.css' />
 
-</div>
-*/
-/* --}}
-
-
-
-<div class="login-container">
-    <h1 class="f1-title">Signup</h1>
-    <form action="/auth/register" method="post">
-        <div>
-            <label for="email">EMAIL:</label>
-            <input type="email" id="email" name="email" required>
-        </div>
-        <div>
-            <label for="password">PASSWORD:</label>
-            <input type="password" id="password" name="password" required>
-        </div>
-        <div>
-            <label for="name">FULL NAME:</label>
-            <input type="text" id="name" name="name" required>
-        </div>
-        <div>
-            <label for="dob">DATE OF BIRTH:</label>
-            <input type="date" id="dob" name="dob" required>
-        </div>
-        <div>
-            <label for="teamRole">TEAM ROLE:</label>
-            <select id="teamRole" name="teamRole" required>
-                <option value="Driver">Driver</option>
-                <option value="Engineer">Engineer</option>
-                <option value="Mechanic">Mechanic</option>
-            </select>
-        </div>
-        <button type="submit" class="btn">Register</button>
-        {{#each errors}}
-            <p style="color:red">{{this}}</p>
-        {{/each}}
-    </form>
-    {{!-- <p class="signup-link">Ya tienes una cuenta? <a href="auth/login-page">Inicia sesión aquí</a></p> --}}
-    <p class="signup-link">Ya tienes una cuenta? <a href="/auth/login-page">Inicia sesión aquí</a></p>
-
+<div class='general-container'>
+  <h1 class='f1-title'>Signup</h1>
+  <form action='/auth/register' method='post'>
+    <div>
+      <label for='email'>EMAIL:</label>
+      <input type='email' id='email' name='email' required />
+    </div>
+    <br />
+    <div>
+      <label for='password'>PASSWORD:</label>
+      <input type='password' id='password' name='password' required />
+    </div>
+    <br />
+    <div>
+      <label for='name'>FULL NAME:</label>
+      <input type='text' id='name' name='name' required />
+    </div>
+    <br />
+    <div>
+      <label for='dob'>DATE OF BIRTH:</label>
+      <input type='date' id='dob' name='dob' required />
+    </div>
+    <br />
+    <div>
+      <label for='teamRole'>TEAM ROLE:</label>
+      <select id='teamRole' name='teamRole' required>
+        <option value='Driver'>Driver</option>
+        <option value='Engineer'>Engineer</option>
+        <option value='Mechanic'>Mechanic</option>
+      </select>
+    </div>
+    <br />
+    <button type='submit' class='btn'>Register</button>
+    {{#each errors}}
+      <p style='color:red'>{{this}}</p>
+    {{/each}}
+  </form>
+  <br>
+  <br>
+  {{! <p class="signup-link">Ya tienes una cuenta? <a href="auth/login-page">Inicia sesión aquí</a></p> }}
+  <p class='signup-link'>¿Ya tienes una cuenta?</p>
+  <a href='/auth/login-page' class='btn'>Inicia sesión aquí</a>
 </div>

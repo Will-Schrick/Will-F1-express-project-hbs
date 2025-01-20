@@ -1,19 +1,23 @@
-<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/style-f1-final.css">
 
 
 {{!--   moved this down below.. it was here email: {{ toUpperCase user.email }} --}}
-
+<div class="general-container">
 <h1>WELCOME {{user.name}},</h1>
 <h1>Your Profile is:</h1>
 <p><strong>Name:</strong> {{user.name}}</p>
+<p><strong>Date of Birth:</strong> {{formatDate user.dob}}</p>
 <p><strong>Email:</strong> {{toUpperCase user.email}}</p>
 <p><strong>Team Role:</strong> {{user.teamRole}}</p>
-<p><strong>Date of Birth:</strong> {{user.dob}}</p>
+<p><strong>Team Name:</strong> {{user.team.name}}</p>
 
 
-<!-- I added  Load the button only if the user is an admin -->
-<h2><strong>{{> button user=user }}</strong></h2>
+
+<!-- Show the "Go to Admin Page" link only if the user is an admin -->
+{{#if user.isAdmin}}
+  <h2><a href="/admin" class="btn">Go to Admin Page</a></h2>
+{{/if}}
 <br>
 <br>
-
-<a href="/auth/logout-page">Logout</a>  {{!--added  --}}
+<a href="/auth/logout-page" class="btn">Logout</a>  {{!--added  --}}
+</div>

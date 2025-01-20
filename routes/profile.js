@@ -15,9 +15,12 @@ router.get('/', isAuthenticated, async (req, res) => {
       req.flash('error', 'User not found.');
       return res.redirect('/auth/login-page');
     }
-
+    const isAdmin = user.teamRole === "TEAMMANAGER";
     res.render('profile', {
-      user, // Pass user data to the profile.hbs template
+      user: {
+        ...user,
+        isAdmin, // Pass user data to the profile.hbs template
+      }
     });
   } catch (error) {
     console.error('Error fetching user profile:', error);

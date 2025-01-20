@@ -10,13 +10,12 @@ router.use('/auth', require('./auth'));    //added .auth folder
 router.use('/admin', isAdmin, require('./admin'));    //added .admin folder
 // Girogio said add more here below
 router.use('/profile',require('./profile'));  // i added this
-
+router.use('/admin/edit-user', require('./editUser'));
 
 
 
 router.get('/profile', (req, res) => {
   const { email } = req.user;
-
   res.render('profile', { email })
 })
 

@@ -1,10 +1,80 @@
-<h1>Eres el admin!</h1>
+<link rel="stylesheet" href="/stylesheets/style-f1-final.css">
+{{! added below }}
 
-<br>
-<br>
-<br>
-<br>
-View all your users
+<div class="general-container">
+  <h1>You are the Admin!</h1>
 
+  <!-- Flash messages for notifications -->
+  {{#if success_msg}}
+    <p class="flash-message success">{{success_msg}}</p>
+  {{/if}}
+
+  {{#if error_msg}}
+    <p class="flash-message error">{{error_msg}}</p>
+  {{/if}}
+
+  <!-- Users without a team -->
+  <h2>Users without a team: {{unassignedCount}}</h2>
+  {{#if unassignedUsers.length}}
+    <ul class="user-list">
+      {{#each unassignedUsers}}
+        <li class="user-card">
+          <h3>{{this.name}}</h3>
+          <p>Email: {{this.email}}</p>
+          <form action="/admin/assign-team" method="POST" class="assign-form">
+            <input type="hidden" name="name" value="{{this.name}}">
+            <input type="hidden" name="email" value="{{this.email}}">
+            <label for="teamId">Assign to Team:</label>
+            <select name="teamId" required>
+              <option value="">Select Team</option>
+              {{#each ../teams}}
+                <option value="{{this.id}}">{{this.id}} - {{this.name}}</option>
+              {{/each}}
+            </select>
+            <button type="submit" class="btn">Assign</button>
+          </form>
+        </li>
+      {{/each}}
+    </ul>
+  {{else}}
+    <p>No users without a team assigned at the moment.</p>
+  {{/if}}
+
+  <h2>Your Team Members</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>User ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <th>Team Name</th>
+        <th>Date of Birth</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      {{#each teamUsers}}
+        <tr>
+          <td>{{this.id}}</td>
+          <td>{{this.name}}</td>
+          <td>{{this.email}}</td>
+          <td>{{this.teamRole}}</td>
+          <td>{{this.teamName}}</td>
+          <td>{{this.dob}}</td>
+          <td>
+            <a href="/admin/edit-user/{{this.id}}" class="btn">Edit</a>
+          </td>
+        </tr>
+      {{/each}}
+    </tbody>
+  </table>
+
+  <br>
+    <a href="/profile" class="btn">Back to Profile</a>
 <br>
-<a href="/auth/logout-page">Logout</a>  {{!--added  --}}
+<br>
+<br>
+  <a href="/auth/logout-page" class="btn">Logout</a>
+</div>
+

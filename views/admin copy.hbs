@@ -1,0 +1,87 @@
+
+{{!-- original --}}
+<h1>You are the admin!</h1>
+
+<br />
+
+{{! added below }}
+
+<!-- Flash messages for notifications -->
+{{#if success_msg}}
+  <p style='color: green;'>{{success_msg}}</p>
+{{/if}}
+
+{{#if error_msg}}
+  <p style='color: red;'>{{error_msg}}</p>
+{{/if}}
+<!-- Display count of users without a team -->
+
+<br /><br />
+<!-- Users without a team -->
+<h2>Users without a team: {{unassignedCount}}</h2>
+{{#if unassignedUsers.length}}
+  <ul>
+    {{#each unassignedUsers}}
+      <li>
+        {{this.name}}
+        ({{this.email}})
+        <form action='/admin/assign-team' method='POST'>
+          <input type='hidden' name='name' value='{{this.name}}' />
+          <input type='hidden' name='email' value='{{this.email}}' />
+
+          <label for="teamId">Assign to Team:</label>
+          <select name='teamId' required>
+            <option value=''>Select Team</option>
+            {{#each ../teams}}
+              <option value='{{this.id}}'>{{this.id}} - {{this.name}}</option>
+              {{/each}}
+          </select>
+          <button type='submit'>Assign</button>
+        </form>
+      </li>
+    {{/each}}
+  </ul>
+{{else}}
+  <p>No users without a team assigned at the moment.</p>
+{{/if}}
+{{!  
+<h1>Admin Panel - Assign Team</h1>
+
+<form action="/admin/assign-team" method="POST">
+  <label for="email">Email:</label>
+  <input type="text" name="email" required>
+
+  <label for="teamId">Team ID:</label>
+  <input type="number" name="teamId" min="1" required>
+
+  <button type="submit">Assign Team</button>
+</form>
+}}
+<br /><br />
+
+<h1>Your Team Members</h1>
+<table border='1'>
+  <tr>
+    <th>User ID</th>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Role</th>
+    <th>Team Name</th>
+    <th>Date of Birth</th>
+  </tr>
+  {{#each teamUsers}}
+    <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.teamRole}}</td>
+      <td>{{this.teamname}}</td>
+      <td>{{this.dob}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+<br />
+
+<a href='/auth/logout-page'>Logout</a>
+{{!added  }}

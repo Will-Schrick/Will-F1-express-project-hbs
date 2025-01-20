@@ -50,6 +50,7 @@ router.post('/register', async (req, res) => {
         dob: new Date(dob),
         //teamid: parseInt(teamid, 10),
         teamRole: teamRole,
+        teamId: null
       },
     });
     console.log('New user created:', newUser);

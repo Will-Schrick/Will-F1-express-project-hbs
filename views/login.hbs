@@ -1,7 +1,7 @@
 
-<link rel="stylesheet" href="/stylesheets/style.css">
+<link rel="stylesheet" href="/stylesheets/style-f1-final.css">
 
-<div class="login-container">
+<div class="general-container">
     <h1 class="f1-title">Login</h1>
     <form action="/auth/login" method="post">
         <div>
@@ -12,10 +12,13 @@
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <button type="submit">Login</button>
+        <br>
+        <button type="submit" class="btn">Login</button>
         {{#each errors}}
             <p style="color:red">{{this}}</p>
         {{/each}}
     </form>
-    <p>No tienes una cuenta? <a href="/auth/register-page">Regístrate aquí</a></p>
+    <p>No tienes una cuenta?</p>
+    <br>
+    <a href="/auth/register-page" class="btn">Regístrate aquí</a></p>
 </div>

@@ -29,14 +29,26 @@ passport.use(
 );
 
 // Con esta linea podemos decir a passport con que propriedad puede reconocer al usuario
+//added TeamId
 passport.serializeUser((user, done) => {
-  done(null, user.id);
+  done(null, user.id, user.teamId);
 });
 
 // Con esta configuración podemos decir a passport que datos del usuario quiero en req.user
 passport.deserializeUser(async (id, done) => {
   try {
-    const user = await prisma.user.findUnique({ where: { id: id } });
+    const user = await prisma.user.findUnique({ 
+      where: { id: id },
+    select :  // modified from here
+    {
+    id: true,
+    email: true,
+    name: true,
+    teamId: true,
+    role: true,
+    }         /// -- to here for reference to match and pull people same same team
+});
+
     delete user.password
     done(null, user);
   } catch (error) {

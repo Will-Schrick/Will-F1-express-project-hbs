@@ -31,8 +31,8 @@ const pool = new Pool({
 const indexRouter = require('./routes/index');  //existed
 //added below to // below maybe
 const authRouter = require('./routes/auth')  //added
-//const adminRouter = require ('./routes/admin') //added
-const profileRouter = require('./routes/index'); //added
+const editUserRouter = require('./routes/editUser');
+//const profileRouter = require('./routes/index'); //added
 //const loginRouter = require('.routes/login'); //added
 
 //
@@ -54,6 +54,14 @@ app.use(
   })
 );
 
+app.use(flash());
+// i added to get flash to work
+app.use((req, res, next) => {
+  res.locals.success_msg = req.flash('success_msg');
+  res.locals.error_msg = req.flash('error_msg');
+  next();
+});
+
 // view engine setup
 app.engine('hbs', hbs.engine);
 app.set('views', path.join(__dirname, 'views'));
@@ -64,7 +72,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));   //this was false by default
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(flash());
+//app.use(flash());  commented out becuase I added higher up
 app.use(methodOverride('_method'));
 app.use(passport.initialize());
 app.use(passport.session());
@@ -77,9 +85,10 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocs));  //existed-
 app.use('/', indexRouter);  // main but redirect to 3000/auth/login-page
 //i added more below
 app.use('/auth', authRouter);
-//app.use('/admin', adminRouter);
+app.use('/edit-user', editUserRouter);
 //app.use('/profile', profileRouter);
 //app.use('/login', loginRouter);
+
 
 
 // catch 404 and forward to error handler
@@ -97,5 +106,7 @@ app.use(function (err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+
 
 module.exports = app;

@@ -1,0 +1,52 @@
+<link rel="stylesheet" href="/stylesheets/style-f1-final.css">
+
+<div class="general-container">
+  <h1>Edit User</h1>
+
+  <!-- Flash messages for notifications -->
+  {{#if success_msg}}
+    <p class="flash-message success">{{success_msg}}</p>
+  {{/if}}
+
+  {{#if error_msg}}
+    <p class="flash-message error">{{error_msg}}</p>
+  {{/if}}
+
+  <!-- User Edit Form -->
+  <form action="/admin/edit-user/update-user/{{user.id}}" method="POST">
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" value="{{user.name}}" required>
+
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" value="{{user.email}}" required>
+
+    <label for="teamRole">Team Role:</label>
+    <select id="teamRole" name="teamRole">
+      <option value="Driver" {{#if (eq user.teamRole "Driver")}}selected{{/if}}>Driver</option>
+      <option value="Engineer" {{#if (eq user.teamRole "Engineer")}}selected{{/if}}>Engineer</option>
+      <option value="Mechanic" {{#if (eq user.teamRole "Mechanic")}}selected{{/if}}>Mechanic</option>
+      <option value="TEAMMANAGER" {{#if (eq user.teamRole "TEAMMANAGER")}}selected{{/if}}>Team Manager</option>
+    </select>
+
+    <label for="teamId">Team:</label>
+    <select id="teamId" name="teamId">
+      {{#each teams}}
+        <option value="{{this.id}}" {{#if (eq this.id ../user.teamId)}}selected{{/if}}>
+          {{this.name}}
+        </option>
+      {{/each}}
+    </select>
+<br>
+<br>
+    <button type="submit" class="btn">Update User</button>
+  </form>
+<br>
+<br>
+  <!-- User Deletion Form -->
+  <form action="/admin/edit-user/delete-user/{{user.id}}" method="POST" onsubmit="return confirm('Are you sure you want to delete this user?');">
+    <button type="submit" class="btn">Delete User</button>
+  </form>
+<br>
+<br>
+  <a href="/admin" class="btn">Back to Admin</a>
+</div>

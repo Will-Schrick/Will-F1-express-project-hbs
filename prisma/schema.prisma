@@ -17,7 +17,7 @@ model User {
   updatedAt DateTime @updatedAt
   role      Role     @default(USER)
   teamRole  String
-  teamId    Int
+  teamId    Int?
   team      Team?    @relation(fields: [teamId], references: [id])
 }
 
