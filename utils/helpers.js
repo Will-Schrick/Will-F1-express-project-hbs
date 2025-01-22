@@ -14,6 +14,11 @@ module.exports = {
   formatDate: (date) => {
     if (!date) return 'N/A';
     return new Date(date).toLocaleDateString('en-GB');  // DD/MM/YYYY format
+  },
+
+  yearFounded: (date) => {
+    if (!date) return 'N/A';
+    return new Date(date).getFullYear();  // DD/MM/YYYY format
   }
 };
 

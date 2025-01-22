@@ -34,6 +34,7 @@ model Team {
   companyOwner    String
   yearEstablished DateTime
   crewMembers     User[]
+  logourl         String? 
 }
 
 enum Role {

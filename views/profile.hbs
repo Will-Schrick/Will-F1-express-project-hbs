@@ -4,12 +4,21 @@
 {{!--   moved this down below.. it was here email: {{ toUpperCase user.email }} --}}
 <div class="general-container">
 <h1>WELCOME {{user.name}},</h1>
+<!-- Display team logo if available -->
+
+{{#if user.team.logourl}}
+    <img src="{{user.team.logourl}}" alt="Team Logo" class="team-logo">
+{{else}}
+  <p>No logo available</p>
+{{/if}}
 <h1>Your Profile is:</h1>
 <p><strong>Name:</strong> {{user.name}}</p>
 <p><strong>Date of Birth:</strong> {{formatDate user.dob}}</p>
 <p><strong>Email:</strong> {{toUpperCase user.email}}</p>
 <p><strong>Team Role:</strong> {{user.teamRole}}</p>
 <p><strong>Team Name:</strong> {{user.team.name}}</p>
+<p><strong>Team Headquarters:</strong> {{user.team.location}}</p>
+<p><strong>Year Founded:</strong> {{yearFounded user.team.yearEstablished}}</p>
 
 
 

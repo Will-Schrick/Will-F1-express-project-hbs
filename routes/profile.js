@@ -8,7 +8,16 @@ router.get('/', isAuthenticated, async (req, res) => {
   try {
     const user = await prisma.user.findUnique({
       where: { id: req.user.id }, // Fetch the logged-in user's details
-      include: { team: true }, // Include related team details
+      include: { // Include related team details
+         team: {
+          select: {
+            name: true,
+            logourl: true, 
+            location: true,
+            yearEstablished: true,
+          }
+        }
+      }   
     });
 
     if (!user) {

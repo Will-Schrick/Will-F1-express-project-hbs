@@ -3,20 +3,21 @@ body {
   margin: 0;
   padding: 0;
   font-family: 'Arial', sans-serif;
-  background: url('/images/f1-background.jpg') center/cover no-repeat;
+  background: url('/images/f1-background.jpg') center/cover no-repeat fixed;
   color: white;
 }
 
 body::before {
   content: '';
-  position: absolute;
+  position: fixed;
+  top: 0;
   inset: 0;
   background: rgba(255, 255, 255, 0.5);
   z-index: -1;
 }
 
 .general-container {
-  max-width: 50%;  /* Fixed width for the login box */
+  max-width: 70%;  /* Fixed width for the login box */
   margin: 100px auto;  /* Centers it horizontally and adds top spacing */
   padding: 30px;
   background: rgba(0, 0, 0, 0.8);  /* Dark background */
@@ -31,6 +32,14 @@ font-size: 18px;
 
 }
 
+.user-container {
+  max-width: 90%;  
+  margin: 75px auto;  
+  padding: 30px;
+  background: rgba(0, 0, 0, 0.8);  /* Dark background */
+  border-radius: 10px;
+  text-align: center;
+}
 
 /* Titles */
 h1 {
@@ -62,7 +71,7 @@ p, div {
 /* Centering the table */
 table {
   margin: 20px auto;
-  width: 90%;
+  width: 99%;
   border-collapse: collapse;
   background: rgba(255, 255, 255, 0.9);
   color: black;
@@ -132,6 +141,16 @@ td {
 
 .logout-btn:hover {
   background-color: darkred;
+}
+
+
+.team-logo {
+  display: block;
+  margin: 20px auto;  /* Centers the image */
+  max-width: 300px;   /* Adjust based on your preference */
+  height: auto;       /* Maintain aspect ratio */
+  border-radius: 10px; /* Optional: Rounded corners */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Optional: Add shadow */
 }
 
 /* Responsive Design */

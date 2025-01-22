@@ -38,6 +38,7 @@ const editUserRouter = require('./routes/editUser');
 //
 
 const app = express();
+app.use('/images', express.static(path.join(__dirname, 'public/images')));
 
 app.use(
   session({
@@ -107,6 +108,7 @@ app.use(function (err, req, res, next) {
   res.render('error');
 });
 
+const PORT = process.env.PORT || 3000;
 
 
 module.exports = app;
