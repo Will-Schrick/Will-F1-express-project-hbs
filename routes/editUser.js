@@ -36,7 +36,7 @@ router.post('/update-user/:id', async (req, res) => {
 
     try {
         await prisma.user.update({
-            where: { id: id },  // UUID doesn't require parsing
+            where: { id: id },  
             data: { 
                 name, 
                 email, 
